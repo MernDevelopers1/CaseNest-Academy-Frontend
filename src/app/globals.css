@@ -6,9 +6,38 @@
    toggle and follow the OS setting regardless of the user's choice. */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Our named --spacing-* tokens (xs/sm/md/lg/xl/2xl/3xl/4xl/5xl, added below)
+   share their key names with Tailwind's built-in max-w and min-w container
+   scale. Tailwind v4 resolves those utilities against --spacing-* first, so
+   defining --spacing-sm silently repoints max-w-sm and min-w-sm (and every
+   other matching key) at our 8px token instead of the intended ~24rem
+   container width — with no warning. This restores the original Tailwind
+   values; !important is required because Tailwind's own dynamic utility
+   generator re-emits the shadowed (broken) declaration after this rule
+   regardless of source order, and a plain override loses to it. */
+@utility max-w-xs { max-width: 20rem !important; }
+@utility max-w-sm { max-width: 24rem !important; }
+@utility max-w-md { max-width: 28rem !important; }
+@utility max-w-lg { max-width: 32rem !important; }
+@utility max-w-xl { max-width: 36rem !important; }
+@utility max-w-2xl { max-width: 42rem !important; }
+@utility max-w-3xl { max-width: 48rem !important; }
+@utility max-w-4xl { max-width: 56rem !important; }
+@utility max-w-5xl { max-width: 64rem !important; }
+@utility min-w-xs { min-width: 20rem !important; }
+@utility min-w-sm { min-width: 24rem !important; }
+@utility min-w-md { min-width: 28rem !important; }
+@utility min-w-lg { min-width: 32rem !important; }
+@utility min-w-xl { min-width: 36rem !important; }
+@utility min-w-2xl { min-width: 42rem !important; }
+@utility min-w-3xl { min-width: 48rem !important; }
+@utility min-w-4xl { min-width: 56rem !important; }
+@utility min-w-5xl { min-width: 64rem !important; }
+
 :root {
   --primary: #2b0957;
   --primary-container: #41246d;
+  --on-primary: #ffffff;
   --on-primary-container: #ae8edf;
   --secondary: #4355b9;
   --secondary-container: #8596ff;
