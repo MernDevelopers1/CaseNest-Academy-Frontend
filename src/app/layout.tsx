@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import ThemeInit from "/src/components/ThemeInit";
+import { ToastProvider } from "/src/components/ui/Toast";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -41,7 +42,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="min-h-full flex flex-col">
         <ThemeInit />
-        {children}
+        <ToastProvider>{children}</ToastProvider>
       </body>
     </html>
   );
