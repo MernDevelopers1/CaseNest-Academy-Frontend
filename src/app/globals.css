@@ -48,6 +48,7 @@
   --tertiary-fixed-dim: #ebbf83;
   --error: #ba1a1a;
   --error-container: #ffdad6;
+  --on-error: #ffffff;
   --on-error-container: #93000a;
   --background: #fcf9f8;
   --surface: #fcf9f8;
@@ -69,6 +70,7 @@
 :root.dark {
   --primary: #d6baff;
   --primary-container: #4a2f7a;
+  --on-primary: #2b0957;
   --on-primary-container: #e9ddff;
   --secondary: #b8c3ff;
   --secondary-container: #29348f;
@@ -79,6 +81,7 @@
   --tertiary-fixed-dim: #ebbf83;
   --error: #ffb4ab;
   --error-container: #93000a;
+  --on-error: #690005;
   --on-error-container: #ffdad6;
   --background: #141313;
   --surface: #141313;
@@ -100,6 +103,7 @@
 @theme inline {
   --color-primary: var(--primary);
   --color-primary-container: var(--primary-container);
+  --color-on-primary: var(--on-primary);
   --color-on-primary-container: var(--on-primary-container);
   --color-secondary: var(--secondary);
   --color-secondary-container: var(--secondary-container);
@@ -110,6 +114,7 @@
   --color-tertiary-fixed-dim: var(--tertiary-fixed-dim);
   --color-error: var(--error);
   --color-error-container: var(--error-container);
+  --color-on-error: var(--on-error);
   --color-on-error-container: var(--on-error-container);
   --color-background: var(--background);
   --color-surface: var(--surface);
