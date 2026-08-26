@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* Ties Tailwind's dark: variant to the .dark class our theme toggle sets,
+   instead of the prefers-color-scheme media query — otherwise any dark:
+   utility (including ones in Stitch-sourced markup) would ignore the
+   toggle and follow the OS setting regardless of the user's choice. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --primary: #2b0957;
   --primary-container: #41246d;
