@@ -1,4 +1,6 @@
 import { Users } from "lucide-react";
+import Heading from "/src/components/ui/Heading";
+import Text from "/src/components/ui/Text";
 
 export default function Footer() {
   return (
@@ -12,13 +14,15 @@ export default function Footer() {
             <Users size={20} aria-hidden="true" />
             CaseNest Academy
           </span>
-          <p className="max-w-xs leading-relaxed text-on-surface-variant">
+          <Text size="caption" className="max-w-xs leading-relaxed text-on-surface-variant">
             © 2026 CaseNest Academy. Empowering peer-led education through
             structured collaboration.
-          </p>
+          </Text>
         </div>
         <div className="flex flex-col gap-sm lg:col-span-1 lg:col-start-3">
-          <h4 className="mb-xs text-h4 text-on-surface">Platform</h4>
+          <Heading as="h4" size="h4" className="mb-xs text-on-surface">
+            Platform
+          </Heading>
           <a
             href="#"
             className="text-on-surface-variant transition-all hover:underline"
@@ -33,7 +37,9 @@ export default function Footer() {
           </a>
         </div>
         <div className="flex flex-col gap-sm lg:col-span-1">
-          <h4 className="mb-xs text-h4 text-on-surface">Legal &amp; Contact</h4>
+          <Heading as="h4" size="h4" className="mb-xs text-on-surface">
+            Legal &amp; Contact
+          </Heading>
           <a
             href="#"
             className="text-on-surface-variant transition-all hover:underline"

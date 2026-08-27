@@ -1,5 +1,7 @@
 import { Handshake, Lightbulb, Layers, GraduationCap } from "lucide-react";
 import Card from "/src/components/ui/Card";
+import Heading from "/src/components/ui/Heading";
+import Text from "/src/components/ui/Text";
 
 const MODELS = [
   {
@@ -36,13 +38,13 @@ export default function LearningModels() {
     >
       <div className="mx-auto flex max-w-[1440px] flex-col gap-3xl">
         <div className="mx-auto flex max-w-2xl flex-col gap-sm text-center">
-          <h2 className="text-h1 text-primary">
+          <Heading as="h2" size="h1" className="text-primary">
             Grounded in proven learning models
-          </h2>
-          <p className="text-body text-on-surface-variant">
+          </Heading>
+          <Text className="text-on-surface-variant">
             CaseNest structures every case study and discussion around
             frameworks with a track record in education.
-          </p>
+          </Text>
         </div>
         <div className="grid grid-cols-1 gap-xl sm:grid-cols-2 lg:grid-cols-4">
           {MODELS.map(({ icon: Icon, title, blurb }) => (
@@ -50,8 +52,12 @@ export default function LearningModels() {
               <div className="mb-sm flex h-12 w-12 items-center justify-center rounded-lg bg-primary-container text-on-primary-container">
                 <Icon size={24} />
               </div>
-              <h3 className="text-h4 text-on-surface">{title}</h3>
-              <p className="text-small text-on-surface-variant">{blurb}</p>
+              <Heading as="h3" size="h4" className="text-on-surface">
+                {title}
+              </Heading>
+              <Text size="small" className="text-on-surface-variant">
+                {blurb}
+              </Text>
             </Card>
           ))}
         </div>

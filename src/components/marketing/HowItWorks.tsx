@@ -1,3 +1,6 @@
+import Heading from "/src/components/ui/Heading";
+import Text from "/src/components/ui/Text";
+
 const STEPS = [
   {
     number: 1,
@@ -23,7 +26,9 @@ export default function HowItWorks() {
   return (
     <section id="how-it-works" className="bg-surface px-xl py-4xl lg:px-4xl">
       <div className="mx-auto flex max-w-[1440px] flex-col gap-3xl">
-        <h2 className="text-center text-h1 text-primary">How it works</h2>
+        <Heading as="h2" size="h1" className="text-center text-primary">
+          How it works
+        </Heading>
         <div className="relative flex flex-col items-start justify-between gap-xl md:flex-row md:gap-0">
           <div className="absolute top-1/2 left-[10%] right-[10%] z-0 hidden h-[2px] -translate-y-1/2 bg-outline-variant/30 md:block" />
           {STEPS.map((step) => (
@@ -36,10 +41,12 @@ export default function HowItWorks() {
               >
                 {step.number}
               </div>
-              <h3 className="text-h3 text-on-surface">{step.title}</h3>
-              <p className="text-small text-on-surface-variant">
+              <Heading as="h3" size="h3" className="text-on-surface">
+                {step.title}
+              </Heading>
+              <Text size="small" className="text-on-surface-variant">
                 {step.description}
-              </p>
+              </Text>
             </div>
           ))}
         </div>

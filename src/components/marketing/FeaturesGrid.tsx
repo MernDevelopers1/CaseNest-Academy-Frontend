@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { FileText, UploadCloud, MessageSquare, FolderOpen, BarChart3 } from "lucide-react";
 import Card from "/src/components/ui/Card";
+import Heading from "/src/components/ui/Heading";
+import Text from "/src/components/ui/Text";
 
 export default function FeaturesGrid() {
   return (
@@ -10,13 +12,13 @@ export default function FeaturesGrid() {
     >
       <div className="mx-auto flex max-w-[1440px] flex-col gap-3xl">
         <div className="mx-auto flex max-w-2xl flex-col gap-sm text-center">
-          <h2 className="text-h1 text-primary">
+          <Heading as="h2" size="h1" className="text-primary">
             Everything you need to orchestrate learning
-          </h2>
-          <p className="text-body text-on-surface-variant">
+          </Heading>
+          <Text className="text-on-surface-variant">
             A comprehensive suite of tools designed to facilitate structured
             academic collaboration.
-          </p>
+          </Text>
         </div>
         <div className="grid auto-rows-[300px] grid-cols-1 gap-xl md:grid-cols-3 lg:grid-cols-4">
           <Card
@@ -27,13 +29,13 @@ export default function FeaturesGrid() {
               <div className="mb-sm flex h-12 w-12 items-center justify-center rounded-lg bg-primary-container text-on-primary-container">
                 <FileText size={24} />
               </div>
-              <h3 className="text-h2 text-on-surface">
+              <Heading as="h3" size="h2" className="text-on-surface">
                 Case-study submission
-              </h3>
-              <p className="max-w-sm text-body text-on-surface-variant">
+              </Heading>
+              <Text className="max-w-sm text-on-surface-variant">
                 Structured workflows for students to submit detailed academic
                 case studies for peer review and grading.
-              </p>
+              </Text>
             </div>
             <div className="absolute -bottom-5 -right-5 flex h-64 w-64 items-center justify-center rounded-full bg-surface-container opacity-50 transition-transform duration-500 group-hover:scale-110">
               <UploadCloud size={120} className="text-primary/10" />
@@ -46,10 +48,12 @@ export default function FeaturesGrid() {
           >
             <div className="relative z-10 flex flex-col gap-sm">
               <MessageSquare size={32} className="mb-sm" />
-              <h3 className="text-h3">Tutor-led discussion</h3>
-              <p className="text-small opacity-90">
+              <Heading as="h3" size="h3">
+                Tutor-led discussion
+              </Heading>
+              <Text size="small" className="opacity-90">
                 Facilitated seminars and deep-dive conversational threads.
-              </p>
+              </Text>
             </div>
           </Card>
 
@@ -61,10 +65,12 @@ export default function FeaturesGrid() {
               <div className="mb-sm flex h-10 w-10 items-center justify-center rounded-full bg-tertiary-fixed-dim">
                 <FolderOpen size={20} />
               </div>
-              <h3 className="text-h3">Resource sharing</h3>
-              <p className="text-small opacity-80">
+              <Heading as="h3" size="h3">
+                Resource sharing
+              </Heading>
+              <Text size="small" className="opacity-80">
                 Centralized hub for literature and course materials.
-              </p>
+              </Text>
             </div>
           </Card>
 
@@ -76,11 +82,13 @@ export default function FeaturesGrid() {
               <div className="mb-sm flex h-12 w-12 items-center justify-center rounded-lg bg-surface-container-highest text-on-surface-variant">
                 <BarChart3 size={24} />
               </div>
-              <h3 className="text-h2 text-on-surface">Global Analytics</h3>
-              <p className="max-w-md text-body text-on-surface-variant">
+              <Heading as="h3" size="h2" className="text-on-surface">
+                Global Analytics
+              </Heading>
+              <Text className="max-w-md text-on-surface-variant">
                 Track engagement across cohorts with visual sector breakdowns
                 and geographic distribution maps.
-              </p>
+              </Text>
             </div>
             <div className="relative h-full min-h-[200px] w-full flex-1 overflow-hidden rounded-lg border border-outline-variant/20">
               <Image

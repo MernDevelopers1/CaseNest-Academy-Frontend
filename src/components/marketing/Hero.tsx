@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { Sparkles, ArrowRight } from "lucide-react";
 import ToastButton from "/src/components/marketing/ToastButton";
+import Heading from "/src/components/ui/Heading";
+import Text from "/src/components/ui/Text";
 
 export default function Hero() {
   return (
@@ -11,14 +13,14 @@ export default function Hero() {
             <Sparkles size={16} />
             Introducing the ICE framework integration
           </div>
-          <h1 className="text-display leading-tight text-primary">
+          <Heading as="h1" size="display" className="leading-tight text-primary">
             Peer-led collaborative learning and teaching
-          </h1>
-          <p className="max-w-lg text-body text-on-surface-variant">
+          </Heading>
+          <Text className="max-w-lg text-on-surface-variant">
             Empower your institution with structured case studies, tutor-led
             discussions, and comprehensive learning analytics. Build a
             vibrant community of shared knowledge.
-          </p>
+          </Text>
           <div className="mt-md flex flex-wrap gap-md">
             <ToastButton size="lg" rightIcon={<ArrowRight size={20} />}>
               Get started

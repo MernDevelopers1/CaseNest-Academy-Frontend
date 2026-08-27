@@ -1,5 +1,7 @@
 import { ShieldCheck, BookOpen, UserCheck } from "lucide-react";
 import Card from "/src/components/ui/Card";
+import Heading from "/src/components/ui/Heading";
+import Text from "/src/components/ui/Text";
 import ToastButton from "/src/components/marketing/ToastButton";
 
 const ROLES = [
@@ -25,10 +27,12 @@ export default function RoleCallouts() {
     <section className="bg-surface px-xl py-4xl lg:px-4xl">
       <div className="mx-auto flex max-w-[1440px] flex-col gap-3xl">
         <div className="mx-auto flex max-w-2xl flex-col gap-sm text-center">
-          <h2 className="text-h1 text-primary">Built for every role</h2>
-          <p className="text-body text-on-surface-variant">
+          <Heading as="h2" size="h1" className="text-primary">
+            Built for every role
+          </Heading>
+          <Text className="text-on-surface-variant">
             Whichever seat you take, CaseNest has a dashboard tailored to it.
-          </p>
+          </Text>
         </div>
         <div className="grid grid-cols-1 gap-xl md:grid-cols-3">
           {ROLES.map(({ icon: Icon, role, description }) => (
@@ -39,10 +43,12 @@ export default function RoleCallouts() {
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary-container text-on-primary-container">
                 <Icon size={28} />
               </div>
-              <h3 className="text-h3 text-on-surface">For {role}s</h3>
-              <p className="text-small text-on-surface-variant">
+              <Heading as="h3" size="h3" className="text-on-surface">
+                For {role}s
+              </Heading>
+              <Text size="small" className="text-on-surface-variant">
                 {description}
-              </p>
+              </Text>
               <ToastButton variant="secondary" size="sm">
                 Continue as {role}
               </ToastButton>
