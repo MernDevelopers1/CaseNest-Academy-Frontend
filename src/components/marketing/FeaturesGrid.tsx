@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FileText, UploadCloud, MessageSquare, FolderOpen, BarChart3 } from "lucide-react";
 import Card from "/src/components/ui/Card";
 
@@ -82,10 +83,12 @@ export default function FeaturesGrid() {
               </p>
             </div>
             <div className="relative h-full min-h-[200px] w-full flex-1 overflow-hidden rounded-lg border border-outline-variant/20">
-              <img
+              <Image
                 alt="Abstract data visualization showing a stylized world map and a donut chart of engagement metrics"
-                className="absolute inset-0 h-full w-full object-cover"
+                className="object-cover"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI7xe5-wdnbzcKPSLqKpNlCUFIRUtbWjidR7XM_-QOFhj_bmcb6pULjEYJPG-uhY-C9TDTGwgk6AyhCyY7AvjFAipBrklUyIQun0RWqsPssv8wzvubiOyD5IsB06cK5nHMFKx4J-1TiAvaFjBFKy5R1RDZ7csHxHrHoWjwgugS7M2vVZ6UWA4hBVv4MB-qHzvcYQ9sWqPMsk7_pKSyTw68nAJAe4GyjZHREqmgzxKv0vJzUbs4mXas"
+                fill
+                sizes="(min-width: 768px) 50vw, 100vw"
               />
             </div>
           </Card>

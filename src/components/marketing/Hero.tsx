@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Sparkles, ArrowRight } from "lucide-react";
 import ToastButton from "/src/components/marketing/ToastButton";
 
@@ -28,10 +29,13 @@ export default function Hero() {
           </div>
         </div>
         <div className="ambient-shadow glass-card relative h-[400px] overflow-hidden rounded-xl p-sm transition-transform duration-500 hover:rotate-0 lg:h-[500px] lg:-translate-y-4 lg:rotate-1">
-          <img
+          <Image
             alt="Preview of the CaseNest Academy dashboard, showing a world map of student connections and analytics charts"
-            className="relative z-10 h-full w-full rounded-lg border border-outline-variant/20 object-cover shadow-sm"
+            className="relative z-10 rounded-lg border border-outline-variant/20 object-cover shadow-sm"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFoNf42MIIY2OjXjf1UN1inRl6jhtekovDcscgGMS_oabl9Fwd2rexR69UnRS6bLEHbMxfFG78XpZeBjH9z0lndsnFNgWKNzSwFSMMTndO4HPoTwcXyqHyOqUdzBss5mMK1EHar07hYWtRFNMZcwm92Pgd9RBhAipZZHB-wwx0ossE5yYbDFMsyK1FAKVkgjxoA2YIoidKoxirmDtXRFUTWK4bpIDyx8jInUlYQ63Nzp338EodGuZk"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            priority
           />
         </div>
       </div>
