@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useId, useRef, useSyncExternalStore } from "react";
+import { useEffect, useId, useRef } from "react";
 import type { ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import IconButton from "/src/components/ui/IconButton";
 import { twMerge } from "/src/components/ui/Button";
+import { useMounted } from "/src/lib/useMounted";
 
 export type ModalSize = "sm" | "md" | "lg";
 
@@ -14,19 +15,6 @@ const SIZE_CLASSES: Record<ModalSize, string> = {
   md: "max-w-md",
   lg: "max-w-lg",
 };
-
-const noopSubscribe = () => () => {};
-
-// The portal target (document.body) only exists client-side. This mirrors
-// React's own "useIsClient" pattern to detect that without a
-// setState-in-effect (which the react-hooks lint rule now flags).
-function useMounted(): boolean {
-  return useSyncExternalStore(
-    noopSubscribe,
-    () => true,
-    () => false,
-  );
-}
 
 export interface ModalProps {
   open: boolean;
