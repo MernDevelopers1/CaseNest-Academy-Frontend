@@ -3,6 +3,7 @@ import { Manrope } from "next/font/google";
 import ThemeInit from "/src/components/ThemeInit";
 import QueryProvider from "/src/components/QueryProvider";
 import { ToastProvider } from "/src/components/ui/Toast";
+import { RoleChooserProvider } from "/src/components/auth/RoleChooserProvider";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -44,7 +45,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <QueryProvider>
           <ThemeInit />
-          <ToastProvider>{children}</ToastProvider>
+          <ToastProvider>
+            <RoleChooserProvider>{children}</RoleChooserProvider>
+          </ToastProvider>
         </QueryProvider>
       </body>
     </html>
