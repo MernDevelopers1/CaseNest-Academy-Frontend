@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Sparkles, ArrowRight } from "lucide-react";
-import ToastButton from "/src/components/marketing/ToastButton";
+import RoleChooserTrigger from "/src/components/marketing/RoleChooserTrigger";
 import Heading from "/src/components/ui/Heading";
 import Text from "/src/components/ui/Text";
 
@@ -22,12 +22,12 @@ export default function Hero() {
             vibrant community of shared knowledge.
           </Text>
           <div className="mt-md flex flex-wrap gap-md">
-            <ToastButton size="lg" rightIcon={<ArrowRight size={20} />}>
+            <RoleChooserTrigger size="lg" rightIcon={<ArrowRight size={20} />}>
               Get started
-            </ToastButton>
-            <ToastButton variant="secondary" size="lg">
+            </RoleChooserTrigger>
+            <RoleChooserTrigger variant="secondary" size="lg">
               Log in
-            </ToastButton>
+            </RoleChooserTrigger>
           </div>
         </div>
         <div className="ambient-shadow glass-card relative h-[400px] overflow-hidden rounded-xl p-sm transition-transform duration-500 hover:rotate-0 lg:h-[500px] lg:-translate-y-4 lg:rotate-1">

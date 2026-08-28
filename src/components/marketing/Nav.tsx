@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Menu, X, Users } from "lucide-react";
-import ToastButton from "/src/components/marketing/ToastButton";
+import RoleChooserTrigger from "/src/components/marketing/RoleChooserTrigger";
 
 const NAV_LINKS = [
   { href: "#features", label: "Features" },
@@ -48,9 +48,9 @@ export default function Nav() {
         </div>
 
         <div className="flex items-center gap-md">
-          <ToastButton variant="secondary" size="sm" className="hidden md:inline-flex">
+          <RoleChooserTrigger variant="secondary" size="sm" className="hidden md:inline-flex">
             Log in
-          </ToastButton>
+          </RoleChooserTrigger>
           <button
             type="button"
             aria-label={drawerOpen ? "Close menu" : "Open menu"}
@@ -75,9 +75,9 @@ export default function Nav() {
               {link.label}
             </a>
           ))}
-          <ToastButton variant="secondary" size="sm">
+          <RoleChooserTrigger variant="secondary" size="sm">
             Log in
-          </ToastButton>
+          </RoleChooserTrigger>
         </div>
       )}
     </nav>

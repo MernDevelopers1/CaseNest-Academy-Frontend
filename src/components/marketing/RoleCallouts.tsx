@@ -2,7 +2,7 @@ import { ShieldCheck, BookOpen, UserCheck } from "lucide-react";
 import Card from "/src/components/ui/Card";
 import Heading from "/src/components/ui/Heading";
 import Text from "/src/components/ui/Text";
-import ToastButton from "/src/components/marketing/ToastButton";
+import RoleChooserTrigger from "/src/components/marketing/RoleChooserTrigger";
 
 const ROLES = [
   {
@@ -49,9 +49,9 @@ export default function RoleCallouts() {
               <Text size="small" className="text-on-surface-variant">
                 {description}
               </Text>
-              <ToastButton variant="secondary" size="sm">
+              <RoleChooserTrigger variant="secondary" size="sm">
                 Continue as {role}
-              </ToastButton>
+              </RoleChooserTrigger>
             </Card>
           ))}
         </div>
