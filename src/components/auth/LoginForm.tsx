@@ -95,7 +95,7 @@ export default function LoginForm({ role }: LoginFormProps) {
       );
       login(user, role, Token);
       showToast({ variant: "success", message: "Logged in successfully" });
-      router.push("/");
+      router.push(`/${role}`);
     } catch (err) {
       setFormError(
         err instanceof ApiError && typeof err.body === "string"
