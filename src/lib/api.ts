@@ -15,6 +15,8 @@
 //       }),
 //   });
 
+import { getToken } from "/src/lib/auth";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export class ApiError extends Error {
@@ -47,11 +49,22 @@ export async function apiFetch<T>(
   if (options.body && !headers.has("Content-Type")) {
     headers.set("Content-Type", "application/json");
   }
+  const token = getToken();
+  if (token && !headers.has("Authorization")) {
+    headers.set("Authorization", `Bearer ${token}`);
+  }
 
+  // No credentials: "include" — Phase 2 (2e) chose localStorage + a Bearer
+  // header over httpOnly cookies, so there's no cookie for the browser to
+  // send. Sending credentials: "include" anyway is also what was blocking
+  // every request: the Backend's CORS config (app.use(cors()), no origin
+  // allowlist) responds with a wildcard Access-Control-Allow-Origin, which
+  // browsers refuse to pair with a credentialed request. Omitting
+  // credentials avoids that restriction entirely — no Backend change
+  // needed, since a Bearer header isn't a "credential" in the CORS sense.
   const response = await fetch(`${API_URL}${path}`, {
     ...options,
     headers,
-    credentials: "include",
   });
 
   const body = await parseBody(response);
