@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X, Users } from "lucide-react";
 import RoleChooserTrigger from "/src/components/marketing/RoleChooserTrigger";
+import { useAuthContext } from "/src/components/AuthProvider";
 
 const NAV_LINKS = [
   { href: "#features", label: "Features" },
@@ -13,6 +14,7 @@ const NAV_LINKS = [
 
 export default function Nav() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const { user, role, logout } = useAuthContext();
 
   useEffect(() => {
     if (!drawerOpen) return;
@@ -48,9 +50,27 @@ export default function Nav() {
         </div>
 
         <div className="flex items-center gap-md">
-          <RoleChooserTrigger variant="secondary" size="sm" className="hidden md:inline-flex">
-            Log in
-          </RoleChooserTrigger>
+          {user ? (
+            // Temporary stopgap to prove logout works — there's no real
+            // nav/account menu until Phase 3's App Shell. Leave in place
+            // until then.
+            <div className="hidden items-center gap-sm md:flex">
+              <span className="text-caption capitalize text-on-surface-variant">
+                {role}
+              </span>
+              <button
+                type="button"
+                onClick={logout}
+                className="text-caption text-primary hover:underline"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <RoleChooserTrigger variant="secondary" size="sm" className="hidden md:inline-flex">
+              Log in
+            </RoleChooserTrigger>
+          )}
           <button
             type="button"
             aria-label={drawerOpen ? "Close menu" : "Open menu"}
@@ -75,9 +95,24 @@ export default function Nav() {
               {link.label}
             </a>
           ))}
-          <RoleChooserTrigger variant="secondary" size="sm">
-            Log in
-          </RoleChooserTrigger>
+          {user ? (
+            <div className="flex items-center gap-md">
+              <span className="text-caption capitalize text-on-surface-variant">
+                {role}
+              </span>
+              <button
+                type="button"
+                onClick={logout}
+                className="text-caption text-primary hover:underline"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <RoleChooserTrigger variant="secondary" size="sm">
+              Log in
+            </RoleChooserTrigger>
+          )}
         </div>
       )}
     </nav>
