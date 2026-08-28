@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import ThemeInit from "/src/components/ThemeInit";
+import LocatorInit from "/src/components/LocatorInit";
 import QueryProvider from "/src/components/QueryProvider";
 import AuthProvider from "/src/components/AuthProvider";
 import { ToastProvider } from "/src/components/ui/Toast";
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <QueryProvider>
           <ThemeInit />
+          <LocatorInit />
           <AuthProvider>
             <ToastProvider>
               <RoleChooserProvider>{children}</RoleChooserProvider>
