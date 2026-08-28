@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -10,6 +11,8 @@ import Button from "/src/components/ui/Button";
 import Heading from "/src/components/ui/Heading";
 import Text from "/src/components/ui/Text";
 import { useToast } from "/src/components/ui/Toast";
+import { apiFetch, ApiError } from "/src/lib/api";
+import { useAuthContext } from "/src/components/AuthProvider";
 import type { Role } from "/src/components/auth/roles";
 
 const ROLE_LABELS: Record<Role, string> = {
@@ -17,6 +20,18 @@ const ROLE_LABELS: Record<Role, string> = {
   tutor: "Tutor",
   student: "Student",
 };
+
+// Exact paths from Backend/src/routes/auth.routes.js.
+const LOGIN_PATHS: Record<Role, string> = {
+  admin: "/Adminlogin",
+  tutor: "/teacherlogin",
+  student: "/studentlogin",
+};
+
+// All three login endpoints respond 200 with an array whose [0] is the
+// user row merged with a Token field, or a plain-text error message on
+// failure (403/404) — never JSON, so ApiError.body is just that string.
+type LoginResponse = [Record<string, unknown> & { Token: string }];
 
 const emailSchema = z
   .string()
@@ -51,6 +66,8 @@ export interface LoginFormProps {
 
 export default function LoginForm({ role }: LoginFormProps) {
   const { showToast } = useToast();
+  const { login } = useAuthContext();
+  const router = useRouter();
   const [formError, setFormError] = useState<string | null>(null);
   const {
     register,
@@ -60,15 +77,32 @@ export default function LoginForm({ role }: LoginFormProps) {
     resolver: zodResolver(buildSchema(role)),
   });
 
-  async function onSubmit() {
+  async function onSubmit(data: LoginFormValues) {
     setFormError(null);
-    // Real submission (task 2g) lands once the sign-up forms exist too —
-    // for now this just proves the form/validation plumbing works.
-    await new Promise((resolve) => setTimeout(resolve, 600));
-    showToast({
-      variant: "info",
-      message: "Login UI built — wiring lands in the next phase",
-    });
+    const payload =
+      role === "student"
+        ? {
+            Session_Code: data.Session_Code,
+            Email: data.Email,
+            Password: data.Password,
+          }
+        : { Email: data.Email, Password: data.Password };
+
+    try {
+      const [{ Token, ...user }] = await apiFetch<LoginResponse>(
+        LOGIN_PATHS[role],
+        { method: "POST", body: JSON.stringify(payload) },
+      );
+      login(user, role, Token);
+      showToast({ variant: "success", message: "Logged in successfully" });
+      router.push("/");
+    } catch (err) {
+      setFormError(
+        err instanceof ApiError && typeof err.body === "string"
+          ? err.body
+          : "Something went wrong. Please try again.",
+      );
+    }
   }
 
   function handleForgotPassword() {
