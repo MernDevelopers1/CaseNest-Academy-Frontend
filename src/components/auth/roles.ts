@@ -6,12 +6,7 @@ export function isRole(value: string): value is Role {
   return (ROLES as readonly string[]).includes(value);
 }
 
-// Admins are created by other admins, not self-registered — no admin
-// sign-up route exists.
-export const SIGNUP_ROLES = ["tutor", "student"] as const;
-
-export type SignupRole = (typeof SIGNUP_ROLES)[number];
-
-export function isSignupRole(value: string): value is SignupRole {
-  return (SIGNUP_ROLES as readonly string[]).includes(value);
-}
+// Only students self-register. Admins are created by other admins, and
+// tutors are added by admins too (POST /AddTeacher is an admin action, not
+// a public sign-up endpoint) — so /register only has a student route, not
+// a role-parameterized one.

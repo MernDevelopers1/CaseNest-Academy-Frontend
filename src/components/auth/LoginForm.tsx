@@ -140,11 +140,11 @@ export default function LoginForm({ role }: LoginFormProps) {
         </Button>
       </form>
 
-      {(role === "tutor" || role === "student") && (
+      {role === "student" && (
         <Text size="small" className="text-center text-on-surface-variant">
           Don&apos;t have an account?{" "}
           <Link
-            href={`/register/${role}`}
+            href="/register/student"
             className="text-primary hover:underline"
           >
             Register
