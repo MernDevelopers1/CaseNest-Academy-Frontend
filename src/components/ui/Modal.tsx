@@ -34,6 +34,8 @@ export interface ModalProps {
   title: string;
   children: ReactNode;
   size?: ModalSize;
+  /** Extra classes for the panel — e.g. to widen past the "lg" preset. */
+  className?: string;
 }
 
 export function Modal({
@@ -42,6 +44,7 @@ export function Modal({
   title,
   children,
   size = "md",
+  className,
 }: ModalProps) {
   const mounted = useMounted();
   const panelRef = useRef<HTMLDivElement>(null);
@@ -98,6 +101,7 @@ export function Modal({
         className={twMerge(
           "relative flex w-full flex-col gap-lg rounded-2xl bg-surface p-xl shadow-lg outline-none max-h-[90vh] overflow-y-auto",
           SIZE_CLASSES[size],
+          className,
         )}
       >
         <div className="flex items-start justify-between gap-md">
