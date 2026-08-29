@@ -66,7 +66,7 @@ function SidebarNav({
               "flex items-center gap-sm rounded-lg p-sm text-body transition-all active:scale-[0.98]",
               active
                 ? "bg-secondary-container text-on-secondary-container font-bold"
-                : "text-on-surface-variant hover:translate-x-1 hover:bg-surface-variant",
+                : "text-on-surface-variant hover:translate-x-1 hover:bg-surface-container",
             )}
           >
             <Icon size={20} className="shrink-0" />
@@ -93,7 +93,7 @@ function SidebarFooter({ role, onNavigate }: { role: Role; onNavigate?: () => vo
       <Link
         href={`/${role}/profile`}
         onClick={onNavigate}
-        className="flex items-center gap-sm rounded-lg p-sm text-body text-on-surface-variant transition-all hover:translate-x-1 hover:bg-surface-variant"
+        className="flex items-center gap-sm rounded-lg p-sm text-body text-on-surface-variant transition-all hover:translate-x-1 hover:bg-surface-container"
       >
         <Settings size={20} className="shrink-0" />
         Settings
@@ -101,7 +101,7 @@ function SidebarFooter({ role, onNavigate }: { role: Role; onNavigate?: () => vo
       <button
         type="button"
         onClick={handleLogout}
-        className="flex items-center gap-sm rounded-lg p-sm text-left text-body text-on-surface-variant transition-all hover:translate-x-1 hover:bg-surface-variant"
+        className="flex items-center gap-sm rounded-lg p-sm text-left text-body text-on-surface-variant transition-all hover:translate-x-1 hover:bg-surface-container"
       >
         <LogOut size={20} className="shrink-0" />
         Logout
