@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { User, KeyRound, LogOut } from "lucide-react";
+import { User, KeyRound, LogOut, ChevronDown } from "lucide-react";
 import { useAuthContext } from "/src/components/AuthProvider";
 import { getUserDisplayName } from "/src/lib/user";
 
@@ -50,9 +50,16 @@ export default function AvatarMenu() {
         aria-haspopup="menu"
         aria-expanded={open}
         aria-label="Account menu"
-        className="flex h-9 w-9 items-center justify-center rounded-full bg-primary-container text-small font-semibold text-on-primary-container transition-opacity hover:opacity-90"
+        className="flex items-center gap-sm rounded-lg border border-transparent p-xs transition-colors hover:border-outline-variant hover:bg-surface-container"
       >
-        {initial}
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary-container text-small font-semibold text-on-primary-container">
+          {initial}
+        </span>
+        <span className="hidden text-right sm:block">
+          <span className="block text-small font-semibold text-primary">{displayName}</span>
+          <span className="block text-caption capitalize text-on-surface-variant">{role}</span>
+        </span>
+        <ChevronDown size={20} className="hidden shrink-0 text-on-surface-variant sm:block" />
       </button>
 
       {open && (
