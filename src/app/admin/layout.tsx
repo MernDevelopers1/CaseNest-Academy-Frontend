@@ -23,7 +23,7 @@ const NAV_ITEMS: NavItem[] = [
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
     <RequireRole expectedRole="admin">
-      <AppShell role="admin" navItems={NAV_ITEMS}>
+      <AppShell role="admin" navItems={NAV_ITEMS} ctaHref="/admin/sessions">
         {children}
       </AppShell>
     </RequireRole>
