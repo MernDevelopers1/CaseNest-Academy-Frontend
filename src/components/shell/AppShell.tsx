@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { Menu, X, School, Plus, Settings, LogOut, Bell, HelpCircle } from "lucide-react";
+import { Menu, X, School, Settings, LogOut, Bell, HelpCircle } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import ThemeToggle from "/src/components/ui/ThemeToggle";
 import AvatarMenu from "/src/components/shell/AvatarMenu";
@@ -23,8 +23,6 @@ export interface AppShellProps {
   role: Role;
   navItems: NavItem[];
   children: ReactNode;
-  ctaLabel?: string;
-  ctaHref?: string;
 }
 
 function BrandHeader({ role }: { role: Role }) {
@@ -113,15 +111,11 @@ function SidebarFooter({ role, onNavigate }: { role: Role; onNavigate?: () => vo
 function SidebarContents({
   role,
   navItems,
-  ctaLabel,
-  ctaHref,
   onNavigate,
   onClose,
 }: {
   role: Role;
   navItems: NavItem[];
-  ctaLabel: string;
-  ctaHref: string;
   onNavigate?: () => void;
   onClose?: () => void;
 }) {
@@ -140,31 +134,14 @@ function SidebarContents({
           </button>
         )}
       </div>
-      <div className="mb-sm px-md">
-        <Link
-          href={ctaHref}
-          onClick={onNavigate}
-          className="flex w-full items-center justify-center gap-xs rounded-lg bg-primary py-sm text-small text-on-primary shadow-sm transition-colors hover:bg-primary-container hover:text-on-primary-container"
-        >
-          <Plus size={18} />
-          {ctaLabel}
-        </Link>
-      </div>
       <SidebarNav navItems={navItems} pathname={usePathname()} onNavigate={onNavigate} />
       <SidebarFooter role={role} onNavigate={onNavigate} />
     </>
   );
 }
 
-export default function AppShell({
-  role,
-  navItems,
-  children,
-  ctaLabel = "Create Session",
-  ctaHref,
-}: AppShellProps) {
+export default function AppShell({ role, navItems, children }: AppShellProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const resolvedCtaHref = ctaHref ?? `/${role}`;
 
   useEffect(() => {
     if (!drawerOpen) return;
@@ -180,12 +157,7 @@ export default function AppShell({
     <div className="flex min-h-screen bg-background">
       {/* Desktop sidebar */}
       <aside className="hidden lg:flex lg:w-64 lg:flex-shrink-0 lg:flex-col lg:border-r lg:border-outline-variant lg:bg-surface-container-low">
-        <SidebarContents
-          role={role}
-          navItems={navItems}
-          ctaLabel={ctaLabel}
-          ctaHref={resolvedCtaHref}
-        />
+        <SidebarContents role={role} navItems={navItems} />
       </aside>
 
       {/* Mobile drawer */}
@@ -200,8 +172,6 @@ export default function AppShell({
             <SidebarContents
               role={role}
               navItems={navItems}
-              ctaLabel={ctaLabel}
-              ctaHref={resolvedCtaHref}
               onNavigate={() => setDrawerOpen(false)}
               onClose={() => setDrawerOpen(false)}
             />
