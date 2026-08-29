@@ -51,7 +51,7 @@ function SidebarNav({
   onNavigate?: () => void;
 }) {
   return (
-    <nav className="flex flex-1 flex-col gap-sm overflow-y-auto px-md py-sm">
+    <nav className="flex flex-1 flex-col gap-sm px-md py-sm">
       {navItems.map(({ label, href, icon: Icon }) => {
         const active = pathname === href;
         return (
@@ -154,9 +154,9 @@ export default function AppShell({ role, navItems, children }: AppShellProps) {
   }, [drawerOpen]);
 
   return (
-    <div className="flex min-h-screen bg-background">
+    <div className="flex h-screen overflow-hidden bg-background">
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex lg:w-64 lg:flex-shrink-0 lg:flex-col lg:border-r lg:border-outline-variant lg:bg-surface-container-low">
+      <aside className="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-30 lg:flex lg:w-64 lg:flex-col lg:border-r lg:border-outline-variant lg:bg-surface-container-low">
         <SidebarContents role={role} navItems={navItems} />
       </aside>
 
@@ -179,7 +179,7 @@ export default function AppShell({ role, navItems, children }: AppShellProps) {
         </div>
       )}
 
-      <div className="flex min-w-0 flex-1 flex-col">
+      <div className="flex min-w-0 flex-1 flex-col lg:pl-64">
         {/* Top bar */}
         <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-outline-variant bg-surface px-xl">
           <div className="flex items-center gap-sm lg:hidden">
