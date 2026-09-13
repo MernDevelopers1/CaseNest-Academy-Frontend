@@ -6,6 +6,8 @@ const STATUS_CLASSES: Record<string, string> = {
   Pending: "bg-warning/15 text-warning border border-warning/30",
   Approved: "bg-success/15 text-success border border-success/30",
   Rejected: "bg-error/15 text-error border border-error/30",
+  Active: "bg-success/15 text-success border border-success/30",
+  Inactive: "bg-surface-container text-on-surface-variant border border-outline-variant",
 };
 
 const FALLBACK_CLASSES = "bg-surface-container text-on-surface-variant";
@@ -16,7 +18,7 @@ const SIZE_CLASSES: Record<StatusBadgeSize, string> = {
 };
 
 export interface StatusBadgeProps {
-  status: "Pending" | "Approved" | "Rejected" | string;
+  status: "Pending" | "Approved" | "Rejected" | "Active" | "Inactive" | string;
   size?: StatusBadgeSize;
   className?: string;
 }
