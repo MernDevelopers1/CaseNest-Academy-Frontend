@@ -3,13 +3,23 @@
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { LucideIcon } from "lucide-react";
-import { Users, Video, BookOpen, MessageCircle } from "lucide-react";
+import {
+  Users,
+  Video,
+  BookOpen,
+  MessageCircle,
+  Calendar,
+  Download,
+  MoreVertical,
+  ListFilter,
+} from "lucide-react";
 import { useAuthContext } from "/src/components/AuthProvider";
 import { getUserDisplayName } from "/src/lib/user";
 import { useToast } from "/src/components/ui/Toast";
 import { apiFetch, ApiError } from "/src/lib/api";
 import Card from "/src/components/ui/Card";
 import Heading from "/src/components/ui/Heading";
+import Text from "/src/components/ui/Text";
 import StatCard from "/src/components/admin/dashboard/StatCard";
 import CategoryChart from "/src/components/admin/dashboard/CategoryChart";
 import CountriesMap from "/src/components/admin/dashboard/CountriesMap";
@@ -61,9 +71,40 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="flex flex-col gap-lg">
-      <Heading as="h1" size="h2" className="text-on-surface">
+      <Text size="small" className="text-on-surface-variant">
         Welcome{name ? `, ${name}` : ""}
-      </Heading>
+      </Text>
+
+      <div className="flex flex-col items-start justify-between gap-sm border-b border-outline-variant pb-md md:flex-row md:items-end">
+        <div>
+          <Heading as="h1" size="h1" className="text-primary">
+            Global Analytics
+          </Heading>
+          <Text size="small" className="mt-xs text-on-surface-variant">
+            Overview of collaborative learning distribution and engagement.
+          </Text>
+        </div>
+        <div className="flex gap-sm">
+          <button
+            type="button"
+            onClick={() =>
+              showToast({ variant: "info", message: "Date-range filtering isn't available yet" })
+            }
+            className="flex items-center gap-xs rounded-lg border border-outline px-lg py-sm text-small text-on-surface transition-colors hover:bg-surface-container"
+          >
+            <Calendar size={18} />
+            Last 30 Days
+          </button>
+          <button
+            type="button"
+            onClick={() => showToast({ variant: "info", message: "Export isn't available yet" })}
+            className="flex items-center gap-xs rounded-lg bg-secondary px-lg py-sm text-small text-on-secondary transition-opacity hover:opacity-90"
+          >
+            <Download size={18} />
+            Export
+          </button>
+        </div>
+      </div>
 
       {hasError ? (
         <DashboardError
@@ -73,35 +114,70 @@ export default function AdminDashboardPage() {
         />
       ) : (
         <>
-          <div className="grid grid-cols-1 gap-lg sm:grid-cols-2 lg:grid-cols-4">
-            {STATS.map(({ key, label, icon }) => (
-              <StatCard
-                key={key}
-                label={label}
-                icon={icon}
-                loading={trendsQuery.isLoading}
-                value={trendsQuery.data ? trendsQuery.data[key].current : null}
-                trend={trendsQuery.data ? trendBadge(trendsQuery.data[key]) : null}
-              />
-            ))}
+          <div className="grid grid-cols-1 gap-xl lg:grid-cols-3">
+            <Card padding="lg" className="flex flex-col lg:col-span-2">
+              {caseStudyQuery.isLoading ? (
+                <div className="h-[400px] w-full animate-pulse rounded-lg bg-surface-container" />
+              ) : (
+                <CountriesMap
+                  rows={caseStudyQuery.data ?? []}
+                  onRefresh={() => caseStudyQuery.refetch()}
+                />
+              )}
+            </Card>
+
+            <div className="grid grid-cols-2 gap-md lg:col-span-1 lg:grid-cols-1">
+              {STATS.map(({ key, label, icon }) => (
+                <StatCard
+                  key={key}
+                  label={label}
+                  icon={icon}
+                  loading={trendsQuery.isLoading}
+                  value={trendsQuery.data ? trendsQuery.data[key].current : null}
+                  trend={trendsQuery.data ? trendBadge(trendsQuery.data[key]) : null}
+                />
+              ))}
+            </div>
           </div>
 
-          <Card padding="lg" className="flex flex-col">
-            <Heading as="h3" size="h4" className="mb-md text-on-surface">
-              Countries Represented
-            </Heading>
-            {caseStudyQuery.isLoading ? (
-              <div className="h-[400px] w-full animate-pulse rounded-lg bg-surface-container" />
-            ) : (
-              <CountriesMap rows={caseStudyQuery.data ?? []} />
-            )}
-          </Card>
-
-          <div className="grid grid-cols-1 gap-lg md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-xl md:grid-cols-2">
             <Card padding="lg" className="flex min-h-[380px] flex-col">
-              <Heading as="h3" size="h4" className="mb-md text-on-surface">
-                Frameworks &amp; Models
-              </Heading>
+              <div className="mb-lg flex items-center justify-between">
+                <Heading as="h3" size="h4" className="text-on-surface">
+                  Sectors Share
+                </Heading>
+                <button
+                  type="button"
+                  aria-label="More options"
+                  onClick={() =>
+                    showToast({ variant: "info", message: "No additional options yet" })
+                  }
+                  className="rounded-full p-xs text-on-surface-variant transition-colors hover:bg-surface-container"
+                >
+                  <MoreVertical size={18} />
+                </button>
+              </div>
+              {caseStudyQuery.isLoading ? (
+                <div className="h-full min-h-[260px] w-full animate-pulse rounded-lg bg-surface-container" />
+              ) : (
+                <CategoryChart rows={caseStudyQuery.data ?? []} field="Sector" variant="pie" />
+              )}
+            </Card>
+
+            <Card padding="lg" className="flex min-h-[380px] flex-col">
+              <div className="mb-lg flex items-center justify-between">
+                <Heading as="h3" size="h4" className="text-on-surface">
+                  Models / Frameworks
+                </Heading>
+                <button
+                  type="button"
+                  aria-label="Filter"
+                  onClick={() => showToast({ variant: "info", message: "Filtering isn't available yet" })}
+                  className="rounded-full p-xs text-on-surface-variant transition-colors hover:bg-surface-container"
+                >
+                  <ListFilter size={18} />
+                </button>
+              </div>
               {caseStudyQuery.isLoading ? (
                 <div className="h-full min-h-[260px] w-full animate-pulse rounded-lg bg-surface-container" />
               ) : (
@@ -110,17 +186,6 @@ export default function AdminDashboardPage() {
                   field="ModelAndFramworkCoverd"
                   variant="doughnut"
                 />
-              )}
-            </Card>
-
-            <Card padding="lg" className="flex min-h-[380px] flex-col">
-              <Heading as="h3" size="h4" className="mb-md text-on-surface">
-                Sectors
-              </Heading>
-              {caseStudyQuery.isLoading ? (
-                <div className="h-full min-h-[260px] w-full animate-pulse rounded-lg bg-surface-container" />
-              ) : (
-                <CategoryChart rows={caseStudyQuery.data ?? []} field="Sector" variant="pie" />
               )}
             </Card>
           </div>
