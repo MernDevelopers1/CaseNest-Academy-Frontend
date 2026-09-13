@@ -74,7 +74,7 @@ export function Table<T>({
                 key={i}
                 onClick={onRowClick ? () => onRowClick(row) : undefined}
                 className={twMerge(
-                  "border-b border-outline-variant",
+                  "group border-b border-outline-variant",
                   i % 2 === 0 ? "bg-surface" : "bg-surface-container-low",
                   onRowClick && "cursor-pointer",
                 )}
