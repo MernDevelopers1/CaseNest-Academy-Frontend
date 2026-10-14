@@ -1,5 +1,12 @@
-import ComingSoon from "/src/components/shell/ComingSoon";
+"use client";
+
+import ChangePasswordView from "/src/components/profile/ChangePasswordView";
 
 export default function StudentChangePasswordPage() {
-  return <ComingSoon phase="Phase 7" />;
+  return (
+    <ChangePasswordView
+      role="student"
+      backHref="/student/profile"
+    />
+  );
 }

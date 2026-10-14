@@ -1,5 +1,12 @@
-import ComingSoon from "/src/components/shell/ComingSoon";
+"use client";
+
+import ProfileView from "/src/components/profile/ProfileView";
 
 export default function TutorProfilePage() {
-  return <ComingSoon phase="Phase 7" />;
+  return (
+    <ProfileView
+      role="tutor"
+      changePasswordHref="/tutor/change-password"
+    />
+  );
 }

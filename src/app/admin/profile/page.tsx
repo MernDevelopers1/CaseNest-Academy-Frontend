@@ -1,5 +1,12 @@
-import ComingSoon from "/src/components/shell/ComingSoon";
+"use client";
+
+import ProfileView from "/src/components/profile/ProfileView";
 
 export default function AdminProfilePage() {
-  return <ComingSoon phase="Phase 7" />;
+  return (
+    <ProfileView
+      role="admin"
+      changePasswordHref="/admin/change-password"
+    />
+  );
 }
